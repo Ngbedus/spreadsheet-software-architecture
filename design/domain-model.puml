@@ -1,0 +1,29 @@
+@startuml
+hide empty methods
+class Spreadsheet
+class Cell
+class Position {
+  row : int
+  column : int
+}
+abstract class CellContent
+class NumberContent {
+  source : String
+}
+class TextContent {
+  text : String
+}
+class FormulaContent {
+  expression : String
+}
+class S2VStorage <<service>>
+class Expression <<future>>
+Spreadsheet "1" o-- "0..*" Cell : stores
+Cell "1" --> "1" Position : identified by
+Cell "1" *-- "1" CellContent : contains
+CellContent <|-- NumberContent
+CellContent <|-- TextContent
+CellContent <|-- FormulaContent
+S2VStorage ..> Spreadsheet : load / save
+FormulaContent ..> Expression : parsed as (future)
+@enduml

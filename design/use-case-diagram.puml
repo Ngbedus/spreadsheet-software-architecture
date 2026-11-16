@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+actor "Spreadsheet User" as User
+rectangle "Spreadsheet Application" {
+  usecase "Create spreadsheet" as UC1
+  usecase "Set / edit cell content" as UC2
+  usecase "Clear cell" as UC3
+  usecase "View cell content" as UC4
+  usecase "View calculated value" as UC5
+  usecase "Save spreadsheet (S2V)" as UC6
+  usecase "Load spreadsheet (S2V)" as UC7
+  usecase "Evaluate formulas" as UC8
+  usecase "Evaluate functions/ranges" as UC9
+  usecase "Exit application" as UC10
+}
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC10
+UC5 ..> UC8 : <<include>>
+UC9 ..> UC8 : <<extend>>
+@enduml
